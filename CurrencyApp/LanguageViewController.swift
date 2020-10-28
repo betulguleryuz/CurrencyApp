@@ -21,8 +21,6 @@ class LanguageViewController: UIViewController {
     
         label.text = NSLocalizedString("language_support", comment: "")
         
-        
-        
     }
     
     @IBAction func turkish(_ sender: Any) {

@@ -13,6 +13,7 @@ import FirebaseAnalytics
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var lastUpdateLabel: UILabel!
+    
     @IBOutlet weak var currencyTableView: UITableView!
     
     private var arrayOfCurrency: [Currency] = []
@@ -38,6 +39,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidAppear(_ animated: Bool) {
         getCurrency()
+        
         cTimer()
     }
     
@@ -127,7 +129,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func getCurrency(){
         let headers = [
                  "content-type": "application/json",
-                 "authorization": "//apikey 2KqBt4GDVVE0vLjRq0F6N5:6HGVMQglAmEap9yhlEOoQH"
+                 "authorization": "apikey 4TeJkEGkNXsU4AoOwFWdGN:6aWkKqGwx8rjv7n1AkngA0"
                ]
 
                let request = NSMutableURLRequest(url: NSURL(string: "https://api.collectapi.com/economy/currencyToAll?int=10&base=USD")! as URL,
