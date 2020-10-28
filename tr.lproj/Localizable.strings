@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  CurrencyApp
+
+  Created by betul on 28.10.2020.
+  Copyright © 2020 betul. All rights reserved.
+*/
+language_support = "Dil Desteği";
+settings = "Ayarlar";
