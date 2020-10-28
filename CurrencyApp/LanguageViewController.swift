@@ -14,6 +14,10 @@ class LanguageViewController: UIViewController {
     
     @IBOutlet weak var languageTab: UITabBarItem!
     
+    @IBOutlet weak var turkishLabel: UILabel!
+    
+    @IBOutlet weak var englishLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,7 +28,9 @@ class LanguageViewController: UIViewController {
     }
     
     @IBAction func turkish(_ sender: Any) {
+        
         UserDefaults.standard.set("tr", forKey: "language_support")
+        
         UserDefaults.standard.synchronize()
 
         // Update the language by swaping bundle
@@ -33,10 +39,18 @@ class LanguageViewController: UIViewController {
         label.text = NSLocalizedString("language_support", comment: "")
         
         languageTab.title = NSLocalizedString("settings", comment: "")
+        
+        turkishLabel.text = NSLocalizedString("turkish", comment: "")
+        
+        englishLabel.text = NSLocalizedString("english", comment: "")
+        
+        alertMessage()
     }
     
     @IBAction func english(_ sender: Any) {
+        
         UserDefaults.standard.set("en", forKey: "language_support")
+        
         UserDefaults.standard.synchronize()
         
         // Update the language by swaping bundle
@@ -45,6 +59,12 @@ class LanguageViewController: UIViewController {
         label.text = NSLocalizedString("language_support", comment: "")
         
         languageTab.title = NSLocalizedString("settings", comment: "")
+        
+        turkishLabel.text = NSLocalizedString("turkish", comment: "")
+        
+        englishLabel.text = NSLocalizedString("english", comment: "")
+        
+        alertMessage()
         
     }
     
@@ -57,5 +77,11 @@ class LanguageViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func alertMessage(){
+        let alert = UIAlertController(title: NSLocalizedString("updated", comment: ""), message: "", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
 
 }

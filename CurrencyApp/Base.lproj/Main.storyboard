@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Language-->
+        <!--Settings-->
         <scene sceneID="fHR-k3-tSK">
             <objects>
                 <viewController id="7PS-K8-30Z" customClass="LanguageViewController" customModule="CurrencyApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -175,12 +175,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YG3-Kr-gXW"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Language" image="info.circle.fill" catalog="system" id="lbJ-KS-NtW">
+                    <tabBarItem key="tabBarItem" title="Settings" image="info.circle.fill" catalog="system" id="lbJ-KS-NtW">
                         <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
                     <connections>
+                        <outlet property="englishLabel" destination="deb-HT-zDg" id="wHM-RQ-cz0"/>
                         <outlet property="label" destination="Qid-1M-NJq" id="Oos-Yz-Gy0"/>
                         <outlet property="languageTab" destination="lbJ-KS-NtW" id="bOq-Ej-7c2"/>
+                        <outlet property="turkishLabel" destination="x24-3x-gh7" id="JKT-Ga-aWD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Cb-lm-wjw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -202,7 +204,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gBB-DD-Pzt">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="137.33333333333334"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Updated 00-00-00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gx2-m1-0aa">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Checking..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gx2-m1-0aa">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="137.33333333333334"/>
                                                 <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>

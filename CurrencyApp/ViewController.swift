@@ -22,19 +22,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     var count: Int = -1
     
-    var lastUpdated = "Last Updated 00-00-00"
+    var lastUpdated = "Updating..."
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        ///Firebase Analytics
         Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
             AnalyticsParameterItemID: "my_item_id"
         ])
         
-        if(!self.arrayOfCurrency.isEmpty){
-            self.arrayOfCurrency.removeAll()
-        }
+        self.lastUpdated = NSLocalizedString("waiting", comment: "")
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -116,7 +115,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @objc func loadData(){
-        //print(self.arrayOfCurrency.count)
         if self.arrayOfCurrency.count == self.count-1{
             stopcTimer()
             DispatchQueue.main.async {
@@ -137,8 +135,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                                                    timeoutInterval: 10.0)
                request.httpMethod = "GET"
                request.allHTTPHeaderFields = headers
-               
-               
 
                let session = URLSession.shared
                let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
@@ -151,12 +147,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     do {
                         let decoder = JSONDecoder()
                         let response = try decoder.decode(Root.self, from: data)
-                        print(response.result)
-                        print(response.success)
-                        print(response.result.base)
-                        
-                        print(response.result.data[0].code)
-                        print(response.result.data.count)
                         
                         self.lastUpdated = response.result.lastupdate
                         
@@ -169,6 +159,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                         
                         } catch let err {
                           print("Err", err)
+                            DispatchQueue.main.async {
+                                self.alertMessage(title: "Service not running!")
+                            }
                     }
                     
                    }
@@ -182,6 +175,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                })
 
                dataTask.resume()
+    }
+    
+    func alertMessage(title: String){
+        let alert = UIAlertController(title: title, message: "", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
 }

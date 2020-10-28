@@ -7,3 +7,7 @@
 */
 language_support = "Language Support";
 settings = "Settings";
+turkish = "Turkish";
+english = "English";
+updated = "Language was updated";
+checking = "Kontrol ediliyor...";

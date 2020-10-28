@@ -8,7 +8,7 @@
 
 import UIKit
 
-// MARK: - Empty
+// MARK: - Root
 struct Root: Codable {
     let result: Result
     let success: Bool

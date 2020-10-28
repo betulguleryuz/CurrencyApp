@@ -7,3 +7,7 @@
 */
 language_support = "Dil Desteği";
 settings = "Ayarlar";
+turkish = "Türkçe";
+english = "İngilizce";
+updated = "Dil güncellendi";
+checking = "Checking...";

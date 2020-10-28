@@ -8,6 +8,7 @@
 
 import UIKit
 
+// MARK: - Data
 struct Data: Codable {
     let code: String
     let name: String

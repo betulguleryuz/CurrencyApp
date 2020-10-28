@@ -137,13 +137,13 @@
 			isa = PBXGroup;
 			children = (
 				779AB6E7254965EE008D2821 /* GoogleService-Info.plist */,
+				777FFD7025483DC20024920B /* Info.plist */,
 				777FFD6225483DC00024920B /* AppDelegate.swift */,
 				777FFD6425483DC00024920B /* SceneDelegate.swift */,
 				777FFD6625483DC00024920B /* ViewController.swift */,
 				777FFD6825483DC00024920B /* Main.storyboard */,
 				777FFD6B25483DC20024920B /* Assets.xcassets */,
 				777FFD6D25483DC20024920B /* LaunchScreen.storyboard */,
-				777FFD7025483DC20024920B /* Info.plist */,
 				777FFD9625486FFD0024920B /* Root.swift */,
 				777FFD98254870430024920B /* Result.swift */,
 				777FFD9A2548704F0024920B /* Data.swift */,
@@ -633,6 +633,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K2D3NFTPD3;
 				INFOPLIST_FILE = CurrencyApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -651,6 +652,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K2D3NFTPD3;
 				INFOPLIST_FILE = CurrencyApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
