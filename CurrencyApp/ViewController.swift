@@ -16,12 +16,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBOutlet weak var currencyTableView: UITableView!
     
+    @IBOutlet weak var homeTab: UITabBarItem!
+    
     private var arrayOfCurrency: [Currency] = []
     
+    // The timer for updated Table View
     var timer : Timer!
     
+    // The timer for request
+    var requestTimer: Timer!
+    
+    //Currency Data Count
     var count: Int = -1
     
+    //Last Update Information
     var lastUpdated = "Updating..."
     
     override func viewDidLoad() {
@@ -33,16 +41,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             AnalyticsParameterItemID: "my_item_id"
         ])
         
-        self.lastUpdated = NSLocalizedString("waiting", comment: "")
+        homeTab.title = NSLocalizedString("home", comment: "")
+        
+        lastUpdateLabel.text = NSLocalizedString("checking", comment: "")
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        //First Response
         getCurrency()
         
-        cTimer()
+        //The timer method for request
+        cRequestTimer()
     }
     
+    // MARK: Table View
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.arrayOfCurrency.count
     }
@@ -100,7 +113,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         return cell
     }
+    /**/
     
+    /**The Timer for response and Reload table view**/
     var PING_TIMER_INTERVAL =  0.1   // 0.1 seconds
     
     func cTimer(){
@@ -121,14 +136,28 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             DispatchQueue.main.async {
                 self.currencyTableView.reloadData()
                 self.lastUpdateLabel.text = self.lastUpdated
+                self.count = 0
             }
         }
     }
+    /**/
     
-    func getCurrency(){
+    /**The Timer for request and repeat per seconds**/
+    var PING_REQUEST_TIMER_INTERVAL =  60.0   // 60.0 seconds
+    
+    func cRequestTimer(){
+        print("requestTimer")
+        self.requestTimer = Timer.scheduledTimer(timeInterval: PING_REQUEST_TIMER_INTERVAL, target: self, selector: #selector(self.getCurrency), userInfo: nil, repeats: true)
+    }
+    /**/
+    
+    /**Request Method**/
+    @objc func getCurrency(){
+        //The timer method for updated Table View
+        self.cTimer()
         let headers = [
                  "content-type": "application/json",
-                 "authorization": "apikey 4TeJkEGkNXsU4AoOwFWdGN:6aWkKqGwx8rjv7n1AkngA0"
+                 "authorization": "apikey 6FExBul6PH9p0zrs2ixhCd:73W2Xp0cMe2sAg5905PlmE"
                ]
 
                let request = NSMutableURLRequest(url: NSURL(string: "https://api.collectapi.com/economy/currencyToAll?int=10&base=USD")! as URL,
@@ -153,9 +182,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                         
                         self.count = response.result.data.count
                         
+                        if(!self.arrayOfCurrency.isEmpty){
+                            self.arrayOfCurrency.removeAll()
+                        }
+                        
+                        
+                        
                         for i in 0..<(response.result.data.count-1){
                              self.arrayOfCurrency.append(Currency.init(code: response.result.data[i].code, name: "", rate: response.result.data[i].rate, calculatedstr: "", calculated: 0.0)!)
-                            print(self.arrayOfCurrency[i].code)
+                            //print(self.arrayOfCurrency[i].code)
                         }
                         
                         } catch let err {
@@ -167,17 +202,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     
                    }
                  if (error != nil) {
-                   //print(error as Any)
+                   print(error as Any)
                  } else {
                    let httpResponse = response as? HTTPURLResponse
-                   //print(httpResponse as Any)
+                   print(httpResponse as Any)
                  }
                    
                })
 
                dataTask.resume()
     }
+    /**/
     
+    /**Alert  Message**/
     func alertMessage(title: String){
         let alert = UIAlertController(title: title, message: "", preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertAction.Style.default, handler: nil))

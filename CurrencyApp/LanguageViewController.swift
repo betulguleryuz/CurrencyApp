@@ -10,6 +10,7 @@ import UIKit
 
 class LanguageViewController: UIViewController {
 
+    // Top Label
     @IBOutlet weak var label: UILabel!
     
     @IBOutlet weak var languageTab: UITabBarItem!
@@ -23,7 +24,13 @@ class LanguageViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     
+        languageTab.title = NSLocalizedString("settings", comment: "")
+        
         label.text = NSLocalizedString("language_support", comment: "")
+        
+        turkishLabel.text = NSLocalizedString("turkish", comment: "")
+        
+        englishLabel.text = NSLocalizedString("english", comment: "")
         
     }
     
@@ -68,6 +75,15 @@ class LanguageViewController: UIViewController {
         
     }
     
+    func alertMessage(){
+        
+        let alert = UIAlertController(title: NSLocalizedString("updated", comment: "Update for Language Settings"), message: "", preferredStyle: UIAlertController.Style.alert)
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertAction.Style.default, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -77,11 +93,5 @@ class LanguageViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    
-    func alertMessage(){
-        let alert = UIAlertController(title: NSLocalizedString("updated", comment: ""), message: "", preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertAction.Style.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
 
 }
