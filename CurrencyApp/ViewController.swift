@@ -34,6 +34,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         ])
         
         self.lastUpdated = NSLocalizedString("waiting", comment: "")
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
