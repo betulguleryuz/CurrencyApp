@@ -157,7 +157,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.cTimer()
         let headers = [
                  "content-type": "application/json",
-                 "authorization": "apikey 6FExBul6PH9p0zrs2ixhCd:73W2Xp0cMe2sAg5905PlmE"
+                 "authorization": "apikey 54k5qsCjJUawZMAiWvdytv:1wrCLW5vwr8iajJf1O07ep"
                ]
 
                let request = NSMutableURLRequest(url: NSURL(string: "https://api.collectapi.com/economy/currencyToAll?int=10&base=USD")! as URL,
@@ -196,7 +196,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                         } catch let err {
                           print("Err", err)
                             DispatchQueue.main.async {
-                                self.alertMessage(title: "Service not running!")
+                                self.alertMessage(title: NSLocalizedString("service", comment: ""))
                             }
                     }
                     
